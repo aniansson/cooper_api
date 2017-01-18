@@ -29,7 +29,7 @@ module CooperApi
     config.middleware.insert_before 0, Rack::Cors do
       allow do
         origins '*'
-        resources '*', headers: :any, methods: [:get, :post, :put, :delete]
+        resource '*', headers: :any, methods: [:get, :post, :put, :delete]
       end
     end
   end
