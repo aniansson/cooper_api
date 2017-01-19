@@ -29,7 +29,7 @@ RSpec.describe 'Sessions', type: :request do
     end
 
     it 'invalid email returns error message' do
-      it post '/api/v1/auth/sign_in', params: {
+      post '/api/v1/auth/sign_in', params: {
         email: 'wrong@email.com', password: user.password
       }, headers: headers
 

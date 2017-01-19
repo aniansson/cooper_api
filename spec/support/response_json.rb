@@ -1,5 +1,5 @@
 module ResponseJSON
-  def ResponseJSON
+  def response_json
     JSON.parse(response.body)
   end
 end

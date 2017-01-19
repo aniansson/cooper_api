@@ -15,12 +15,12 @@ RSpec.describe 'User Registration', type: :request do
 
   context 'returns an error meassage when user submits' do
     it 'non-matching password confirmation' do
-      post '/avi/v1/auth', params: {
+      post '/api/v1/auth', params: {
         email: 'example@example.se', password: 'password',
         password_confirmation: 'wrong_password'
       }, headers: headers
 
-      expect(response_json['errors']['password_confirmation']).to eq ['it doesnt match password']
+      expect(response_json['errors']['password_confirmation']).to eq ["doesn't match Password"]
       expect(response.status).to eq 422
     end
 
@@ -30,7 +30,7 @@ RSpec.describe 'User Registration', type: :request do
         password_confirmation: 'password'
       }, headers: headers
 
-      expect(response_json['errors']['emails']).to eq ['invalid email']
+      expect(response_json['errors']['email']).to eq ['is not an email']
       expect(response.status).to eq 422
     end
 
@@ -44,7 +44,7 @@ RSpec.describe 'User Registration', type: :request do
         password_confirmation: 'password'
       }, headers: headers
 
-      expect(response_json['errors']['email']).to eq ['email already exists']
+      expect(response_json['errors']['email']).to eq ['already in use']
       expect(response.status).to eq 422
     end
   end
