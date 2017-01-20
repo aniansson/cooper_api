@@ -14,6 +14,15 @@ RSpec.describe Api::V1::PerformanceDataController, type: :request do
       entry = PerformanceData.last
       expect(entry.data).to eq 'message' => 'Average'
     end
+
+    it 'should give error when user is not logged in' do
+      post '/api/v1/performance_data', params: {
+        performance_data: { data: { message: 'Average' } }
+      }, headers: nil
+
+      expect(response_json['errors']).to eq ['Authorized users only.']
+      expect(response.status).to eq 401
+    end
   end
 
   describe 'GET /api/v1/performance_data' do
