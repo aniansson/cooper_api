@@ -1,9 +1,9 @@
+require 'rails_helper' # this was the reason you were getting 'white' errors when you ran just this one file
+
 RSpec.describe Api::V1::PerformanceDataController, type: :request do
   let(:user) { FactoryGirl.create(:user) }
   let(:credentials) { user.create_new_auth_token }
   let(:headers) { { HTTP_ACCEPT: 'application/json' }.merge!(credentials) }
-
-  def
 
   describe 'POST /api/v1/performance_data' do
     it 'creates a data entry' do
